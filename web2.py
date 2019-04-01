@@ -35,20 +35,19 @@ class google_image:
                 link = driver.find_element_by_class_name("irc_mi").get_attribute("src")
             except:
                 print("Couldnt grab a file")
-            print(i,':',link)
+            #print(i,':',link)
             if link is not None:
-                print("adding")
+                print("adding",link)
                 img_links.add(link)
-
-
 #   Interesting bit of code to get bunch of href thingys.
 #img_links = driver.find_elements_by_xpath("//a[@href]")
 #img_links = [e.get_attribute('href') for e in img_links]
 #img_links = [e for e in img_links if e[:28]=='https://www.google.ca/imgres']
-
-
+        l = song_name.split()
+        print(img_links)
         for i,img_link in enumerate(img_links):
-            call("wget "+img_link+" -P ./images/", shell=True)
+            print("calling wget on",img_link)
+            call("wget "+img_link+" -O ./images/"+l[0]+"/pic_"+str(i)+img_link[-4:], shell=True)
             #img_data = requests.get(img_link).content
             #with open('./images/'+img_link[-8:]+str(i)+'.jpg','wb') as handle:
                 #handle.write(img_data)
