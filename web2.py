@@ -47,9 +47,12 @@ class google_image:
         print(img_links)
         for i,img_link in enumerate(img_links):
             print("calling wget on",img_link)
-            call("wget "+img_link+" -O ./images/"+l[0]+"/pic_"+str(i)+img_link[-4:], shell=True)
+            os.system("wget --output-document=./images/"+l[0]+img_link[-4:]+" "+img_link)
+            #call("wget "+img_link+" -O -P ./images/"+l[0]+"/pic_"+str(i)+img_link[-4:], shell=True)
             #img_data = requests.get(img_link).content
             #with open('./images/'+img_link[-8:]+str(i)+'.jpg','wb') as handle:
+#wget --output-document=./images/haps.jpg
+
                 #handle.write(img_data)
 
         print("Saved images")
